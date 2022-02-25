@@ -15,39 +15,829 @@ at(index)","Метод at() принимает значение в виде це
 Однако, при работе с элементами в конце массива больше нет необходимости прибегать к array.length. 
 Например, для получения последнего элемента, вместо array[array.length-1] можно вызвать array.at(-1).","array[array.length-1]
 array.at(-1)"
-"Array.prototype.concat()",,
-"Array.prototype.copyWithin()",,
-"Array.prototype.entries()",,
-"Array.prototype.every()",,
-"Array.prototype.fill()",,
-"Array.prototype.filter()",,
-"Array.prototype.find()",,
-"Array.prototype.findIndex()",,
-"Array.prototype.flat()",,
-"Array.prototype.flatMap()",,
-"Array.prototype.forEach()",,
-"Array.from()",,
-"Array.prototype.groupBy()",,
-"Array.prototype.includes()",,
-"Array.prototype.indexOf()",,
-"Array.isArray()",,
-"Array.prototype.join()",,
-"Array.prototype.keys()",,
-"Array.prototype.lastIndexOf()",,
-"Array.prototype.map()",,
-"Array.of()",,
-"Array.prototype.pop()",,
-"Array.prototype.push()",,
-"Array.prototype.reduce()",,
-"Array.prototype.reduceRight()",,
-"Array.prototype.reverse()",,
-"Array.prototype.shift()",,
-"Array.prototype.slice()",,
-"Array.prototype.some()",,
-"Array.prototype.sort()",,
-"Array.prototype.splice()",,
-"Array.prototype.toLocaleString()",,
-"Array.prototype.toSource()",,
-"Array.prototype.toString()",,
-"Array.prototype.unshift()",,
-"Array.prototype.values()",,
+"Array.prototype.concat()","Метод concat() возвращает новый массив, состоящий из массива, 
+на котором он был вызван, соединённого с другими массивами и/или значениями,
+ переданными в качестве аргументов.","const array1 = ['a', 'b', 'c'];
+const array2 = ['d', 'e', 'f'];
+const array3 = array1.concat(array2);
+
+console.log(array3);
+// expected output: Array [""a"", ""b"", ""c"", ""d"", ""e"", ""f""]
+
+synt 
+var new_array = old_array.concat(value1[, value2[, ...[, valueN]]])"
+"Array.prototype.copyWithin()","Метод copyWithin() копирует последовательность элементов массива внутри него в позицию, начинающуюся по индексу target. Копия берётся по индексам, задаваемым вторым и третьим аргументами start и end. Аргумент end является необязательным и по умолчанию равен длине массива.
+
+arr.copyWithin(target, start[, end = this.length])
+target
+Начальный индекс позиции цели, куда копировать элементы.
+start
+Начальный индекс позиции источника, откуда начинать копировать элементы.
+end
+Необязательный параметр. Конечный индекс позиции источника, где заканчивать копировать элементы, не включая элемент на позиции end
+","[1, 2, 3, 4, 5].copyWithin(0, 3);
+// [4, 5, 3, 4, 5]
+
+[1, 2, 3, 4, 5].copyWithin(0, 3, 4);
+// [4, 2, 3, 4, 5]
+
+[1, 2, 3, 4, 5].copyWithin(0, -2, -1);
+// [4, 2, 3, 4, 5]"
+"Array.prototype.entries()","Метод entries() возвращает новый объект итератора массива Array Iterator, содержащий пары ключ / значение для каждого индекса в массиве.","arr.entries()
+
+Описание
+var arr = ['a', 'b', 'c'];
+var eArr = arr.entries();
+
+console.log(eArr.next().value); // [0, 'a']
+console.log(eArr.next().value); // [1, 'b']
+console.log(eArr.next().value); // [2, 'c']"
+"Array.prototype.every()","Сводка
+Метод every() проверяет, удовлетворяют ли все элементы массива условию, заданному в передаваемой функции.
+
+Обратите внимание: метод возвращает true при любом условии для пустого массива.
+
+Синтаксис
+arr.every(callback(currentValue[, index[, array]])[, thisArg])
+Параметры
+callback
+Функция проверки каждого элемента, принимает три аргумента:
+currentValue
+Текущий обрабатываемый элемент массива.
+indexНеобязательный
+Индекс текущего обрабатываемого элемента массива.
+arrayНеобязательный
+Массив, по которому осуществляется проход.
+thisArgНеобязательный
+Необязательный параметр. Значение, используемое в качестве this при выполнении функции callback.
+Возвращаемое значение
+true если функция проверки возвращает truthy значение для каждого элемента массива. Иначе, false.","function isBigEnough(element, index, array) {
+  return element >= 10;
+}
+[12, 5, 8, 130, 44].every(isBigEnough);   // false
+[12, 54, 18, 130, 44].every(isBigEnough); // true
+
+[12, 5, 8, 130, 44].every(elem => elem >= 10);   // false
+[12, 54, 18, 130, 44].every(elem => elem >= 10); // true"
+"Array.prototype.fill()","Метод fill() заполняет все элементы массива от начального до конечного индексов одним значением.
+
+arr.fill(value[, start = 0[, end = this.length]])
+Параметры
+value
+Значение, заполняющее массив.
+start
+Необязательный параметр. Начальный индекс.
+end
+Необязательный параметр. Конечный индекс.","const array1 = [1, 2, 3, 4];
+
+// fill with 0 from position 2 until position 4
+console.log(array1.fill(0, 2, 4));
+// expected output: [1, 2, 0, 0]
+
+// fill with 5 from position 1
+console.log(array1.fill(5, 1));
+// expected output: [1, 5, 5, 5]
+
+console.log(array1.fill(6));
+// expected output: [6, 6, 6, 6]"
+"Array.prototype.filter()","Метод filter() создаёт новый массив со всеми элементами, прошедшими проверку, задаваемую в передаваемой функции.","const words = ['spray', 'limit', 'elite', 'exuberant', 'destruction', 'present'];
+
+const result = words.filter(word => word.length > 6);
+
+console.log(result);
+// expected output: Array [""exuberant"", ""destruction"", ""present""]
+
+// Стрелочная функция
+filter((element) => { ... } )
+filter((element, index) => { ... } )
+filter((element, index, array) => { ... } )
+
+// Колбэк-функция
+filter(callbackFn)
+filter(callbackFn, thisArg)
+
+// Встроенная колбэк-функция
+filter(function callbackFn(element) { ... })
+filter(function callbackFn(element, index) { ... })
+filter(function callbackFn(element, index, array){ ... })
+filter(function callbackFn(element, index, array) { ... }, thisArg)"
+"Array.prototype.find()","Метод find() возвращает значение первого найденного в массиве элемента, которое удовлетворяет условию переданному в callback функции.  В противном случае возвращается undefined.","Пример: поиск простого числа в массиве
+Следующий пример находит в массиве положительных чисел элемент, являющийся простым числом (либо возвращает undefined, если в массиве нет простых чисел).
+
+function isPrime(element, index, array) {
+  var start = 2;
+  while (start <= Math.sqrt(element)) {
+    if (element % start++ < 1) {
+      return false;
+    }
+  }
+  return element > 1;
+}
+
+console.log([4, 6, 8, 12].find(isPrime)); // undefined, не найдено
+console.log([4, 5, 8, 12].find(isPrime)); // 5"
+"Array.prototype.findIndex()","Метод findIndex() возвращает индекс в массиве, если элемент удовлетворяет условию проверяющей функции. В противном случае возвращается -1.","Пример: поиск индекса простого числа в массиве
+Следующий пример находит в массиве индекс элемента, являющийся простым числом (либо возвращает -1, если в массиве нет простых чисел).
+
+function isPrime(element, index, array) {
+  var start = 2;
+  while (start <= Math.sqrt(element)) {
+    if (element % start++ < 1) {
+      return false;
+    }
+  }
+  return element > 1;
+}
+
+console.log([4, 6, 8, 12].findIndex(isPrime)); // -1, не найдено
+console.log([4, 6, 7, 12].findIndex(isPrime)); // 2"
+"Array.prototype.flat()","Метод flat() возвращает новый массив, в котором все элементы вложенных подмассивов были рекурсивно ""подняты"" на указанный уровень depth.","Примеры
+Упрощение вложенных массивов
+var arr1 = [1, 2, [3, 4]];
+arr1.flat();
+// [1, 2, 3, 4]
+
+var arr2 = [1, 2, [3, 4, [5, 6]]];
+arr2.flat();
+// [1, 2, 3, 4, [5, 6]]
+
+var arr3 = [1, 2, [3, 4, [5, 6]]];
+arr3.flat(2);
+// [1, 2, 3, 4, 5, 6]
+
+var arr4 = [1, 2, [3, 4, [5, 6, [7, 8, [9, 10]]]]];
+arr4.flat(Infinity);
+// [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+Copy to Clipboard
+Упрощение и ""дырки"" в массивах
+Метод flat удаляет пустые слоты из массива:
+
+var arr4 = [1, 2, , 4, 5];
+arr4.flat();
+// [1, 2, 4, 5]"
+"Array.prototype.flatMap()","Метод flatMap() сначала применяет функцию к каждому элементу, а затем преобразует полученный результат в плоскую структуру и помещает в новый массив. Это идентично map функции, с последующим применением функции flat с параметром depth ( глубина ) равным 1, но flatMap часто бывает полезным, так как работает немного более эффективно.","Примеры
+map и flatMap
+let arr1 = [1, 2, 3, 4];
+
+arr1.map(x => [x * 2]);
+// [[2], [4], [6], [8]]
+
+arr1.flatMap(x => [x * 2]);
+// [2, 4, 6, 8]
+
+// выравнивается только один уровень
+arr1.flatMap(x => [[x * 2]]);
+// [[2], [4], [6], [8]]"
+"Array.prototype.forEach()","Метод forEach() выполняет указанную функцию один раз для каждого элемента в массиве.","const array1 = ['a', 'b', 'c'];
+
+array1.forEach(element => console.log(element));
+
+// expected output: ""a""
+// expected output: ""b""
+// expected output: ""c"""
+"Array.from()","Метод Array.from() создаёт новый экземпляр Array из массивоподобного или итерируемого объекта","console.log(Array.from('foo'));
+// expected output: Array [""f"", ""o"", ""o""]
+
+console.log(Array.from([1, 2, 3], x => x + x));
+// expected output: Array [2, 4, 6]"
+"Array.prototype.groupBy()","Метод groupBy() группирует элементы вызывающего массива в соответствии со значениями, возвращаемыми предоставленной функцией тестирования. Возвращаемый объект имеет отдельные свойства для каждой группы, содержащие массивы с элементами в группе.
+
+Обратите внимание, что возвращаемый объект ссылается на те же элементы, что и исходный массив (не глубокие копии). Изменение внутренней структуры этих элементов будет отражено как в исходном массиве, так и в возвращаемом объекте.
+
+Этот метод можно использовать, когда имена групп могут быть представлены строками. Если вам нужно сгруппировать элементы по ключу, который является некоторым произвольным объектом, используйте вместо этого Array.prototype.groupByToMap().","// Arrow function
+groupBy((element) => { /* ... */ } )
+groupBy((element, index) => { /* ... */ } )
+groupBy((element, index, array) => { /* ... */ } )
+
+// Callback function
+groupBy(callbackFn)
+groupBy(callbackFn, thisArg)
+
+// Inline callback function
+groupBy(function(element) { /* ... */ })
+groupBy(function(element, index) { /* ... */ })
+groupBy(function(element, index, array){ /* ... */ })
+groupBy(function(element, index, array) { /* ... */ }, thisArg)"
+"Array.prototype.includes()","Метод includes() определяет, содержит ли массив определённый элемент, возвращая в зависимости от этого true или false.
+Метод includes() определяет, содержит ли массив определённый элемент, возвращая в зависимости от этого true или false.
+
+Метод includes() определяет, содержит ли массив определённый элемент, возвращая в зависимости от этого true или false.
+","const array1 = [1, 2, 3];
+
+console.log(array1.includes(2));
+// expected output: true
+
+const pets = ['cat', 'dog', 'bat'];
+
+console.log(pets.includes('cat'));
+// expected output: true
+
+console.log(pets.includes('at'));
+// expected output: false"
+"Array.prototype.indexOf()","Метод indexOf() возвращает первый индекс, по которому данный элемент может быть найден в массиве или -1, если такого индекса нет.","var array = [2, 5, 9];
+array.indexOf(2);     // 0
+array.indexOf(7);     // -1
+array.indexOf(9, 2);  // 2
+array.indexOf(2, -1); // -1
+array.indexOf(2, -3); // 0"
+"Array.isArray()","Метод Array.isArray() возвращает true, если объект является массивом и false, если он массивом не является.","// Все следующие вызовы вернут true
+Array.isArray([]);
+Array.isArray([1]);
+Array.isArray(new Array());
+// Малоизвестный факт: Array.prototype сам является массивом:
+Array.isArray(Array.prototype);
+
+// Все следующие вызовы вернут false
+Array.isArray();
+Array.isArray({});
+Array.isArray(null);
+Array.isArray(undefined);
+Array.isArray(17);
+Array.isArray(""Array"");
+Array.isArray(true);
+Array.isArray(false);
+Array.isArray({ __proto__: Array.prototype });"
+"Array.prototype.join()","Метод join() объединяет все элементы массива (или массивоподобного объекта) в строку.","const elements = ['Fire', 'Air', 'Water'];
+
+console.log(elements.join());
+// expected output: ""Fire,Air,Water""
+
+console.log(elements.join(''));
+// expected output: ""FireAirWater""
+
+console.log(elements.join('-'));
+// expected output: ""Fire-Air-Water"""
+"Array.prototype.keys()","Метод keys() возвращает новый итератор массива Array Iterator, содержащий ключи каждого индекса в массиве.","const array1 = ['a', 'b', 'c'];
+const iterator = array1.keys();
+
+for (const key of iterator) {
+  console.log(key);
+}
+
+// expected output: 0
+// expected output: 1
+// expected output: 2"
+"Array.prototype.lastIndexOf()","Метод lastIndexOf() возвращает последний индекс, по которому данный элемент может быть найден в массиве или -1, если такого индекса нет. Массив просматривается от конца к началу, начиная с индекса fromIndex.","const animals = ['Dodo', 'Tiger', 'Penguin', 'Dodo'];
+
+console.log(animals.lastIndexOf('Dodo'));
+// expected output: 3
+
+console.log(animals.lastIndexOf('Tiger'));
+// expected output: 1"
+"Array.prototype.map()","Метод map() создаёт новый массив с результатом вызова указанной функции для каждого элемента массива.
+const new_array = arr.map(function callback( currentValue[, index[, array]]) {
+    // Возвращает элемент для new_array
+}[, thisArg])","const numbers = [1, 4, 9];
+const roots = numbers.map(Math.sqrt);
+// теперь roots равен [1, 2, 3], а numbers всё ещё равен [1, 4, 9]
+
+const numbers = [1, 4, 9];
+const doubles = numbers.map((num) => num * 2);
+// теперь doubles равен [2, 8, 18], а numbers всё ещё равен [1, 4, 9]"
+"Array.of()","Метод Array.of() создаёт новый экземпляр массива Array из произвольного числа аргументов, вне зависимости от числа или типа аргумента.","Array.of(7);       // [7]
+Array.of(1, 2, 3); // [1, 2, 3]
+
+Array(7);          // массив с 7 пустыми слотами
+Array(1, 2, 3);    // [1, 2, 3]"
+"Array.prototype.pop()","Метод pop() удаляет последний элемент из массива и возвращает его значение.","var myFish = ['ангел', 'клоун', 'мандарин', 'хирург'];
+
+console.log(myFish); // ['ангел', 'клоун', 'мандарин', 'хирург']
+
+var popped = myFish.pop();
+
+console.log(myFish); // ['ангел', 'клоун', 'мандарин']
+
+console.log(popped); // 'хирург'"
+"Array.prototype.push()","Метод push() добавляет один или более элементов в конец массива и возвращает новую длину массива.","var sports = ['футбол', 'бейсбол'];
+var total = sports.push('американский футбол', 'плавание');
+
+console.log(sports); // ['футбол', 'бейсбол', 'американский футбол', 'плавание']
+console.log(total);  // 4
+Copy to Clipboard
+Пример: слияние двух массивов
+В этом примере используется функция apply() для помещения всех элементов из второго массива в первый.
+
+var vegetables = ['пастернак', 'картошка'];
+var moreVegs = ['сельдерей', 'свёкла'];
+
+// Сливает второй массив с первым
+// Эквивалентно вызову vegetables.push('сельдерей', 'свёкла');
+Array.prototype.push.apply(vegetables, moreVegs);
+
+console.log(vegetables); // ['пастернак', 'картошка', 'сельдерей', 'свёкла']"
+"Array.prototype.reduce()","Метод reduce() применяет функцию reducer к каждому элементу массива (слева-направо), возвращая одно результирующее значение.","const array1 = [1, 2, 3, 4];
+
+// 0 + 1 + 2 + 3 + 4
+const initialValue = 0;
+const sumWithInitial = array1.reduce(
+  (previousValue, currentValue) => previousValue + currentValue,
+  initialValue
+);
+
+console.log(sumWithInitial);
+// expected output: 10"
+"Array.prototype.reduceRight()","Метод reduceRight() применяет функцию к аккумулятору и каждому значению массива (справа-налево), сводя его к одному значению.
+arr.reduceRight(callback[, initialValue])
+
+<a href='https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Array/reduceRight'>https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Array/reduceRight</a>","callback
+Функция, выполняющаяся для каждого элемента массива, принимает четыре аргумента:
+previousValue
+Значение, возвращённое предыдущим выполнением функции callback, либо значение initialValue, если оно предоставлено (смотрите пояснения ниже).
+currentValue
+Текущий обрабатываемый элемент массива.
+index
+Индекс текущего обрабатываемого элемента массива.
+array
+Массив, для которого была вызвана функция reduceRight.
+initialValue
+Необязательный параметр. Объект, используемый в качестве первого аргумента при первом вызове функции callback."
+"Array.prototype.reverse()","Метод reverse() на месте обращает порядок следования элементов массива. Первый элемент массива становится последним, а последний — первым
+","const array1 = ['one', 'two', 'three'];
+console.log('array1:', array1);
+// expected output: ""array1:"" Array [""one"", ""two"", ""three""]
+
+const reversed = array1.reverse();
+console.log('reversed:', reversed);
+// expected output: ""reversed:"" Array [""three"", ""two"", ""one""]
+
+// Careful: reverse is destructive -- it changes the original array.
+console.log('array1:', array1);
+// expected output: ""array1:"" Array [""three"", ""two"", ""one""]"
+"Array.prototype.shift()","Метод shift() удаляет первый элемент из массива и возвращает его значение. Этот метод изменяет длину массива.","var myFish = ['ангел', 'клоун', 'мандарин', 'хирург'];
+
+console.log('myFish до: ' + myFish);
+//myFish до: ангел,клоун,мандарин,хирург
+
+var shifted = myFish.shift();
+
+console.log('myFish после: ' + myFish);
+//myFish после: клоун,мандарин,хирург
+
+console.log('Удалён этот элемент: ' + shifted);
+//Удалён этот элемент: ангел"
+"Array.prototype.slice()","Метод slice() возвращает новый массив, содержащий копию части исходного массива.","const animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
+
+console.log(animals.slice(2));
+// expected output: Array [""camel"", ""duck"", ""elephant""]
+
+console.log(animals.slice(2, 4));
+// expected output: Array [""camel"", ""duck""]
+
+console.log(animals.slice(1, 5));
+// expected output: Array [""bison"", ""camel"", ""duck"", ""elephant""]"
+"Array.prototype.some()","Метод some() проверяет, удовлетворяет ли какой-либо элемент массива условию, заданному в передаваемой функции.","const array = [1, 2, 3, 4, 5];
+
+// checks whether an element is even
+const even = (element) => element % 2 === 0;
+
+console.log(array.some(even));
+// expected output: true"
+"Array.prototype.sort()","Метод sort() на месте сортирует элементы массива и возвращает отсортированный массив. Сортировка не обязательно устойчива (англ.). Порядок сортировки по умолчанию соответствует порядку кодовых точек Unicode.","var fruit = ['арбузы', 'бананы', 'Вишня'];
+fruit.sort(); // ['Вишня', 'арбузы', 'бананы']
+
+var scores = [1, 2, 10, 21];
+scores.sort(); // [1, 10, 2, 21]
+
+var things = ['слово', 'Слово', '1 Слово', '2 Слова'];
+things.sort(); // ['1 Слово', '2 Слова', 'Слово', 'слово']
+// В Unicode, числа находятся перед буквами в верхнем регистре,
+// а те, в свою очередь, перед буквами в нижнем регистре.
+
+var numbers = [4, 2, 5, 1, 3];
+numbers.sort(function(a, b) {
+  return a - b;
+});
+console.log(numbers); // [1, 2, 3, 4, 5]"
+"Array.prototype.splice()","Метод splice() изменяет содержимое массива, удаляя существующие элементы и/или добавляя новые.
+","Удаляет 0 элементов по индексу 2 и вставляет ""drum""
+var myFish = ['angel', 'clown', 'mandarin', 'sturgeon'];
+var removed = myFish.splice(2, 0, 'drum');
+
+// myFish равен [""angel"", ""clown"", ""drum"", ""mandarin"", ""sturgeon""]
+// removed равен [], ничего не удалено
+Copy to Clipboard
+Удаляет 1 элемент по индексу 3
+var myFish = ['angel', 'clown', 'drum', 'mandarin', 'sturgeon'];
+var removed = myFish.splice(3, 1);
+
+// removed равен [""mandarin""]
+// myFish равен [""angel"", ""clown"", ""drum"", ""sturgeon""]"
+"Array.prototype.toLocaleString()","Метод toLocaleString() возвращает строковое представление элементов массива. Элементы преобразуются в строки с использованием своих собственных методов toLocaleString и эти строки разделяются локале-зависимой строкой (например, запятой «,»).","var number = 1337;
+var date = new Date();
+var myArr = [number, date, 'foo'];
+
+var str = myArr.toLocaleString();
+
+console.log(str);
+// напечатает '1337,6.12.2013 19:37:35,foo',
+// если работает под германской локалью (de-DE) с временной зоной Европа/Берлин"
+"Array.prototype.toSource()","Метод toSource() возвращает строковое представление исходного кода массива.","var alpha = new Array('a', 'b', 'c');
+
+alpha.toSource();   // вернёт ['a', 'b', 'c']"
+"Array.prototype.toString()","Метод toString() возвращает строковое представление указанного массива и его элементов.","var monthNames = ['Янв', 'Фев', 'Мар', 'Апр'];
+var myVar = monthNames.toString(); // присваивает 'Янв,Фев,Мар,Апр' переменной myVar."
+"Array.prototype.unshift()","Метод unshift() добавляет один или более элементов в начало массива и возвращает новую длину массива.","var arr = [1, 2];
+
+arr.unshift(0); // результат вызова равен 3, новой длине массива
+// arr равен [0, 1, 2]
+
+arr.unshift(-2, -1); // = 5
+// arr равен [-2, -1, 0, 1, 2]
+
+arr.unshift([-3]);
+// arr равен[[-3], -2, -1, 0, 1, 2]
+"
+"Array.prototype.values()","Метод values() возвращает новый объект итератора массива Array Iterator, содержащий значения для каждого индекса в массиве.","Пример: итерация через цикл for...of
+var arr = ['w', 'y', 'k', 'o', 'p'];
+var eArr = arr.values();
+// ваш браузер должен поддерживать цикл for...of и переменные,
+// объявленные через let в циклах for
+for (let letter of eArr) {
+  console.log(letter);
+}
+Copy to Clipboard
+Пример: альтернативный способ итерации
+var arr = ['w', 'y', 'k', 'o', 'p'];
+var eArr = arr.values();
+console.log(eArr.next().value); // w
+console.log(eArr.next().value); // y
+console.log(eArr.next().value); // k
+console.log(eArr.next().value); // o
+console.log(eArr.next().value); // p"
+"eval()",,
+"uneval()",,
+"isFinite()",,
+"parseFloat()",,
+"parseInt()",,
+"decodeURI()",,
+"decodeURIComponent()",,
+"encodeURI()",,
+"encodeURIComponent()",,
+"Object",,
+"Object.prototype.constructor",,
+"Object.assign()",,
+"Object.create()",,
+"Object.defineProperties()",,
+"Object.defineProperty()",,
+"Object.entries()",,
+"Object.freeze()",,
+"Object.fromEntries()",,
+"Object.getOwnPropertyDescriptor()",,
+"Object.getOwnPropertyDescriptors()",,
+"Object.getOwnPropertyNames()",,
+"Object.getOwnPropertySymbols()",,
+"Object.getPrototypeOf()",,
+"Object.hasOwn() (en-US)",,
+"Object.prototype.hasOwnProperty()",,
+"Object.is()",,
+"Object.isExtensible()",,
+"Object.isFrozen()",,
+"Object.prototype.isPrototypeOf()",,
+"Object.isSealed()",,
+"Object.keys()",,
+"Object.preventExtensions()",,
+"Object.prototype.propertyIsEnumerable()",,
+"Object.seal()",,
+"Object.setPrototypeOf()",,
+"Object.prototype.toLocaleString()",,
+"Object.prototype.toSource()",,
+"Object.prototype.toString()",,
+"Object.prototype.valueOf()",,
+"Object.values()",,
+"Function",,
+"Function.displayName",,
+"Function.length",,
+"Function.prototype.apply()",,
+"Function.prototype.bind()",,
+"Function.prototype.call()",,
+"Function.prototype.toString()",,
+"Boolean.prototype.toSource()",,
+"Boolean.prototype.toString()",,
+"Boolean.prototype.valueOf()",,
+"Symbol",,
+"Symbol.asyncIterator (en-US)",,
+"Symbol.prototype.description (en-US)",,
+"Symbol.hasInstance",,
+"Symbol.isConcatSpreadable",,
+"Symbol.iterator",,
+"Symbol.match",,
+"Symbol.matchAll (en-US)",,
+"Symbol.replace",,
+"Symbol.search",,
+"Symbol.species",,
+"Symbol.split",,
+"Symbol.toPrimitive",,
+"Symbol.toStringTag",,
+"Symbol.unscopables",,
+"Symbol.prototype[@@toPrimitive]",,
+"Symbol.for()",,
+"Symbol.keyFor()",,
+"Symbol.prototype.toSource() (en-US)",,
+"Symbol.prototype.toString() (en-US)",,
+"Symbol.prototype.valueOf()",,
+"Number",,
+"Number.EPSILON",,
+"Number.MAX_SAFE_INTEGER",,
+"Number.MAX_VALUE",,
+"Number.MIN_SAFE_INTEGER",,
+"Number.MIN_VALUE",,
+"Number.NaN",,
+"Number.NEGATIVE_INFINITY",,
+"Number.POSITIVE_INFINITY",,
+"Number.isFinite()",,
+"Number.isInteger()",,
+"Number.isNaN()",,
+"Number.isSafeInteger()",,
+"Number.parseFloat()",,
+"Number.parseInt()",,
+"Number.prototype.toExponential()",,
+"Number.prototype.toFixed()",,
+"Number.prototype.toLocaleString()",,
+"Number.prototype.toPrecision()",,
+"Number.prototype.toSource()",,
+"Number.prototype.toString()",,
+"Number.prototype.valueOf()",,
+"Math",,
+"Math.E",,
+"Math.LN10",,
+"Math.LN2",,
+"Math.LOG10E",,
+"Math.LOG2E",,
+"Math.PI",,
+"Math.SQRT1_2",,
+"Math.SQRT2",,
+"Math.abs()",,
+"Math.acos()",,
+"Math.acosh()",,
+"Math.asin()",,
+"Math.asinh()",,
+"Math.atan()",,
+"Math.atan2()",,
+"Math.atanh()",,
+"Math.cbrt()",,
+"Math.ceil()",,
+"Math.clz32()",,
+"Math.cos()",,
+"Math.cosh()",,
+"Math.exp()",,
+"Math.expm1()",,
+"Math.floor()",,
+"Math.fround()",,
+"Math.hypot()",,
+"Math.imul()",,
+"Math.log()",,
+"Math.log10()",,
+"Math.log1p()",,
+"Math.log2()",,
+"Math.max()",,
+"Math.min()",,
+"Math.pow()",,
+"Math.random()",,
+"Math.round()",,
+"Math.sign()",,
+"Math.sin()",,
+"Math.sinh()",,
+"Math.sqrt()",,
+"Math.tan()",,
+"Math.tanh()",,
+"Math.trunc()",,
+"Date",,
+"Date.prototype[@@toPrimitive] (en-US)",,
+"Date.prototype.getDate()",,
+"Date.prototype.getDay()",,
+"Date.prototype.getFullYear()",,
+"Date.prototype.getHours()",,
+"Date.prototype.getMilliseconds()",,
+"Date.prototype.getMinutes()",,
+"Date.prototype.getMonth()",,
+"Date.prototype.getSeconds()",,
+"Date.prototype.getTime()",,
+"Date.prototype.getTimezoneOffset()",,
+"Date.prototype.getUTCDate()",,
+"Date.prototype.getUTCDay()",,
+"Date.prototype.getUTCFullYear()",,
+"Date.prototype.getUTCHours()",,
+"Date.prototype.getUTCMilliseconds()",,
+"Date.prototype.getUTCMinutes()",,
+"Date.prototype.getUTCMonth()",,
+"Date.prototype.getUTCSeconds()",,
+"Date.prototype.getYear()",,
+"Date.now()",,
+"Date.parse()",,
+"Date.prototype.setDate()",,
+"Date.prototype.setFullYear()",,
+"Date.prototype.setHours()",,
+"Date.prototype.setMilliseconds()",,
+"Date.prototype.setMinutes()",,
+"Date.prototype.setMonth()",,
+"Date.prototype.setSeconds()",,
+"Date.prototype.setTime()",,
+"Date.prototype.setUTCDate()",,
+"Date.prototype.setUTCFullYear()",,
+"Date.prototype.setUTCHours()",,
+"Date.prototype.setUTCMilliseconds()",,
+"Date.prototype.setUTCMinutes()",,
+"Date.prototype.setUTCMonth()",,
+"Date.prototype.setUTCSeconds()",,
+"Date.prototype.setYear()",,
+"Date.prototype.toDateString()",,
+"Date.prototype.toGMTString()",,
+"Date.prototype.toISOString()",,
+"Date.prototype.toJSON()",,
+"Date.prototype.toLocaleDateString()",,
+"Date.prototype.toLocaleString()",,
+"Date.prototype.toLocaleTimeString()",,
+"Date.prototype.toSource()",,
+"Date.prototype.toString()",,
+"Date.prototype.toTimeString()",,
+"Date.prototype.toUTCString()",,
+"Date.UTC()",,
+"Date.prototype.valueOf()",,
+"String",,
+"String length",,
+"String.prototype[@@iterator]()",,
+"String.prototype.anchor()",,
+"String.prototype.at() (en-US)",,
+"String.prototype.big()",,
+"String.prototype.blink()",,
+"String.prototype.bold()",,
+"String.prototype.charAt()",,
+"String.prototype.charCodeAt()",,
+"String.prototype.codePointAt()",,
+"String.prototype.concat()",,
+"String.prototype.endsWith()",,
+"String.prototype.fixed()",,
+"String.prototype.fontcolor()",,
+"String.prototype.fontsize()",,
+"String.fromCharCode()",,
+"String.fromCodePoint()",,
+"String.prototype.includes()",,
+"String.prototype.indexOf()",,
+"String.prototype.italics()",,
+"String.prototype.lastIndexOf()",,
+"String.prototype.link()",,
+"String.prototype.localeCompare()",,
+"String.prototype.match()",,
+"String.prototype.matchAll()",,
+"String.prototype.normalize()",,
+"String.prototype.padEnd()",,
+"String.prototype.padStart()",,
+"String.raw()",,
+"String.prototype.repeat()",,
+"String.prototype.replace()",,
+"String.prototype.replaceAll()",,
+"String.prototype.search()",,
+"String.prototype.slice()",,
+"String.prototype.small()",,
+"String.prototype.split()",,
+"String.prototype.startsWith()",,
+"String.prototype.strike()",,
+"String.prototype.sub()",,
+"String.prototype.substr()",,
+"String.prototype.substring()",,
+"String.prototype.sup()",,
+"String.prototype.toLocaleLowerCase()",,
+"String.prototype.toLocaleUpperCase()",,
+"String.prototype.toLowerCase()",,
+"String.prototype.toSource()",,
+"String.prototype.toString()",,
+"String.prototype.toUpperCase()",,
+"String.prototype.trim()",,
+"String.prototype.trimEnd()",,
+"String.prototype.trimStart()",,
+"String.prototype.valueOf()",,
+"RegExp",,
+"get RegExp[@@species] (en-US)",,
+"RegExp.prototype.dotAll (en-US)",,
+"RegExp.prototype.flags",,
+"RegExp.prototype.global",,
+"RegExp.prototype.hasIndices (en-US)",,
+"RegExp.prototype.ignoreCase",,
+"RegExp.input ($_)",,
+"RegExp: lastIndex",,
+"RegExp.lastMatch ($&)",,
+"RegExp.lastParen ($+) (en-US)",,
+"RegExp.leftContext ($`) (en-US)",,
+"RegExp.prototype.multiline",,
+"RegExp.$1-$9",,
+"RegExp.rightContext ($') (en-US)",,
+"RegExp.prototype.source",,
+"RegExp.prototype.sticky",,
+"RegExp.prototype.unicode",,
+"RegExp.prototype[@@match]() (en-US)",,
+"RegExp.prototype[@@matchAll]() (en-US)",,
+"RegExp.prototype[@@replace]() (en-US)",,
+"RegExp.prototype[@@search]()",,
+"RegExp.prototype[@@split]()",,
+"RegExp.prototype.compile() (en-US)",,
+"RegExp.prototype.exec()",,
+"RegExp.prototype.test()",,
+"RegExp.prototype.toSource()",,
+"RegExp.prototype.toString()",,
+"Map",,
+"get Map[@@species]",,
+"Map.prototype[@@toStringTag]",,
+"Map.prototype.size",,
+"Map.prototype[@@iterator]()",,
+"Map.prototype.clear()",,
+"Map.prototype.delete()",,
+"Map.prototype.entries()",,
+"Map.prototype.forEach()",,
+"Map.prototype.get()",,
+"Map.prototype.has()",,
+"Map.prototype.keys()",,
+"Map.prototype.set()",,
+"Map.prototype.values()",,
+"Set",,
+"get Set[@@species] (en-US)",,
+"Set.prototype.size",,
+"Set.prototype[@@iterator]() (en-US)",,
+"Set.prototype.add()",,
+"Set.prototype.clear()",,
+"Set.prototype.delete()",,
+"Set.prototype.entries()",,
+"Set.prototype.forEach()",,
+"Set.prototype.has()",,
+"Set.prototype.values()",,
+"WeakMap",,
+"WeakMap.prototype.clear()",,
+"WeakMap.prototype.delete()",,
+"WeakMap.prototype.get()",,
+"WeakMap.prototype.has()",,
+"WeakMap.prototype.set()",,
+"WeakSet",,
+"WeakSet.prototype.add()",,
+"WeakSet.prototype.delete()",,
+"WeakSet.prototype.has()",,
+"ArrayBuffer (en-US)",,
+"get ArrayBuffer[@@species]",,
+"ArrayBuffer.prototype.byteLength",,
+"Methods",,
+"ArrayBuffer.isView()",,
+"ArrayBuffer.prototype.slice()",,
+"DataView (en-US)",,
+"DataView.prototype.buffer",,
+"DataView.prototype.byteLength",,
+"DataView.prototype.byteOffset",,
+"DataView.prototype.getBigInt64()",,
+"DataView.prototype.getBigUint64()",,
+"DataView.prototype.getFloat32()",,
+"DataView.prototype.getFloat64()",,
+"DataView.prototype.getInt16()",,
+"DataView.prototype.getInt32()",,
+"DataView.prototype.getInt8()",,
+"DataView.prototype.getUint16()",,
+"DataView.prototype.getUint32()",,
+"DataView.prototype.getUint8()",,
+"DataView.prototype.setBigInt64()",,
+"DataView.prototype.setBigUint64()",,
+"DataView.prototype.setFloat32()",,
+"DataView.prototype.setFloat64()",,
+"DataView.prototype.setInt16()",,
+"DataView.prototype.setInt32()",,
+"DataView.prototype.setInt8()",,
+"DataView.prototype.setUint16()",,
+"DataView.prototype.setUint32()",,
+"DataView.prototype.setUint8()",,
+"JSON",,
+"JSON.parse()",,
+"JSON.stringify()",,
+"Promise",,
+"Promise.all()",,
+"Promise.allSettled()",,
+"Promise.any()",,
+"Promise.prototype.catch()",,
+"Promise.prototype.finally()",,
+"Promise.race()",,
+"Promise.reject()",,
+"Promise.resolve()",,
+"Promise.prototype.then()",,
+"Reflect",,
+"Reflect.apply()",,
+"Reflect.construct()",,
+"Reflect.defineProperty()",,
+"Reflect.deleteProperty()",,
+"Reflect.get()",,
+"Reflect.getOwnPropertyDescriptor() (en-US)",,
+"Reflect.getPrototypeOf() (en-US)",,
+"Reflect.has() (en-US)",,
+"Reflect.isExtensible() (en-US)",,
+"Reflect.ownKeys()",,
+"Reflect.preventExtensions() (en-US)",,
+"Reflect.set() (en-US)",,
+"Reflect.setPrototypeOf() (en-US)",,
+"Proxy",,
+,,
+,,
+,,
+,,
+,,
+,,
+,,
+,,
+,,
+,,
+,,
+,,
+,,
+,,

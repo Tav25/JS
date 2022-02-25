@@ -1,0 +1,53 @@
+﻿"Array.length
+arr.length","устанавливает или возвращает число элементов этого массива. 
+Значение данного свойства 32-битное безнаковое целое число, 
+которое всегда численно больше чем самый наибольший индекс в массиве
+arr.length","var items = ['shoes', 'shirts', 'socks', 'sweaters'];
+items.length;
+
+// возвращает 4"
+"Array.prototype.at()
+at(index)","Метод at() принимает значение в виде целого числа и возвращает элемент массива с данным индексом.
+ В качестве аргумента метод принимает положительные и отрицательные числа. 
+При отрицательном значении отсчёт происходит с конца массива.
+Получение элементов массива с помощью квадратных скобок по-прежнему остаётся корректным способом. 
+Например, array[0] вернёт первый элемент. 
+Однако, при работе с элементами в конце массива больше нет необходимости прибегать к array.length. 
+Например, для получения последнего элемента, вместо array[array.length-1] можно вызвать array.at(-1).","array[array.length-1]
+array.at(-1)"
+"Array.prototype.concat()",,
+"Array.prototype.copyWithin()",,
+"Array.prototype.entries()",,
+"Array.prototype.every()",,
+"Array.prototype.fill()",,
+"Array.prototype.filter()",,
+"Array.prototype.find()",,
+"Array.prototype.findIndex()",,
+"Array.prototype.flat()",,
+"Array.prototype.flatMap()",,
+"Array.prototype.forEach()",,
+"Array.from()",,
+"Array.prototype.groupBy()",,
+"Array.prototype.includes()",,
+"Array.prototype.indexOf()",,
+"Array.isArray()",,
+"Array.prototype.join()",,
+"Array.prototype.keys()",,
+"Array.prototype.lastIndexOf()",,
+"Array.prototype.map()",,
+"Array.of()",,
+"Array.prototype.pop()",,
+"Array.prototype.push()",,
+"Array.prototype.reduce()",,
+"Array.prototype.reduceRight()",,
+"Array.prototype.reverse()",,
+"Array.prototype.shift()",,
+"Array.prototype.slice()",,
+"Array.prototype.some()",,
+"Array.prototype.sort()",,
+"Array.prototype.splice()",,
+"Array.prototype.toLocaleString()",,
+"Array.prototype.toSource()",,
+"Array.prototype.toString()",,
+"Array.prototype.unshift()",,
+"Array.prototype.values()",,

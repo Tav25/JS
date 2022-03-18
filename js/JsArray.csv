@@ -464,10 +464,10 @@ console.log(eArr.next().value); // y
 console.log(eArr.next().value); // k
 console.log(eArr.next().value); // o
 console.log(eArr.next().value); // p"
-"eval()",,
-"uneval()",,
-"isFinite()",,
-"parseFloat()",,
+"eval()","https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/eval",
+"uneval()","https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/uneval",
+"isFinite()","https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/isFinite","Глобальная isFinite() функция определяет, является ли переданное значение конечным числом. Если необходимо, параметр сначала преобразуется в число."
+"parseFloat()","https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/parseFloat","Функция parseFloat() принимает строку в качестве аргумента и возвращает десятичное число (число с плавающей точкой)"
 "parseInt()",,
 "decodeURI()",,
 "decodeURIComponent()",,
